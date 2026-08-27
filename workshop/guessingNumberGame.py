@@ -2,10 +2,19 @@ import random
 
 def guessingNumberGame():
     number = random.randint(0,10)
-    guess = int(input("Guess a number between 0-10 :"))
-    while guess != number :
+    while True:
+        try:
+            guess = int(input("Guess a number between 0-10 :"))
+            if guess < 0 or guess > 10:
+                raise ValueError
+        except ValueError:
+            print("Please enter a whole number between 0 and 10.")
+            continue
+
+        if guess == number:
+            break
         print("try again")
-        guess = int(input("Guess a number between 0-10 :"))
+
     return "you guessed it right"
 
 print(guessingNumberGame())
